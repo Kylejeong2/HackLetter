@@ -1,7 +1,8 @@
-import { scrapeArticle } from './scrapeArticle';
+import { NextResponse } from 'next/server';
+import { scrapeArticle } from '../scrapeArticle';
 import axios from "axios";
 
-export async function main() {
+export async function Post() {
     try {
         // Step 1: Scrape Hacker News
         const response = await axios.get('api/scrapeHackerNews');
@@ -19,16 +20,12 @@ export async function main() {
             let summary = await axios.post('api/summarizeArticle', { prompt: articles[i] });
             summaries.push(summary)
         }
-
         // Output the summaries
-        console.log(summaries);
+        // console.log(summaries);
         return(summaries)
 
     } catch (error) {
-
         console.error("Error:", error);
+        return new NextResponse("error", {status:500})
     }
 }
-
-// Call the main function
-main();

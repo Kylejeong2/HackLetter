@@ -1,20 +1,29 @@
+"use client"
+
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import { db } from '@/lib/db';
-import { $notes } from '@/lib/db/schema';
 import { UserButton, auth } from '@clerk/nextjs';
-import { eq } from 'drizzle-orm';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
+import axios from "axios";
+// import { eq } from 'drizzle-orm';
+// import { db } from '@/lib/db';
 
 type Props = {}
 
 const DashboardPage = async (props: Props) => {
     const {userId} = auth()
-    const notes = await db.select().from($notes).where(
-        eq($notes.userId, userId!)
-    )
+    const [summaries, setSummaries] = useState<string[]>([]);
+
+    const handleSummarize = async () => {
+        try {
+            const response = await axios.get('/backend/main');
+            setSummaries(response.data);
+        } catch (error) {
+            console.error('Failed to summarize articles', error);
+        }
+    };
 
   return (
     <>
@@ -38,6 +47,17 @@ const DashboardPage = async (props: Props) => {
 
                     <Separator />
                     
+                    <Button onClick={handleSummarize}>
+                        Summarize HackerNews
+                    </Button>
+
+                    <div className="mt-4">
+                        {summaries.map((summary, index) => (
+                            <div key={index} className="mb-2">
+                                {summary}
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </div>

@@ -25,7 +25,9 @@ export default async function GET() {
 
     console.log('Top 10 stories saved.');
     return top10Stories;
+    
   } catch (error) {
+
     console.error('Error fetching top stories:', error);
     return new NextResponse("error", {status:500})
   }
