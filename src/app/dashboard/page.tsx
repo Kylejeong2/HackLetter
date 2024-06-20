@@ -7,21 +7,40 @@ import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import axios from "axios";
+import { NextResponse } from 'next/server';
+import { scrapeArticle } from '../backend/scrapeArticle';
+// import main from '../backend/main';
 // import { eq } from 'drizzle-orm';
 // import { db } from '@/lib/db';
 
 type Props = {}
 
 const DashboardPage = async (props: Props) => {
-    const {userId} = auth()
-    const [summaries, setSummaries] = useState<string[]>([]);
-
+    // const {userId} = auth()
     const handleSummarize = async () => {
         try {
-            const response = await axios.get('/backend/main');
-            setSummaries(response.data);
+                // Step 1: Scrape Hacker News
+            const response = await axios.get('api/scrapeHackerNews');
+            const hackerNewsData = response.data; 
+
+            // Step 2: Extract URLs from the JSON data
+            const urls = hackerNewsData.map((item: any) => item.url);
+
+            // Step 3: Scrape articles using the extracted URLs
+            const articles = await Promise.all(urls.map((url: string) => scrapeArticle(url)));
+
+            // Step 4: Summarize the articles
+            let summaries = []
+            for(let i = 0; i < articles.length; i++){
+                let summary = await axios.post('api/summarizeArticle', { prompt: articles[i] });
+                summaries.push(summary)
+            }
+            // Output the summaries
+            console.log(summaries);
+            return(summaries)
         } catch (error) {
             console.error('Failed to summarize articles', error);
+            return new NextResponse("error", {status:500})
         }
     };
 
@@ -37,7 +56,7 @@ const DashboardPage = async (props: Props) => {
                             </Link>
 
                             <div className='w-4'></div>
-                            <h1 className='text-3xl font-bold text-gray-900'>Title</h1>
+                            <h1 className='text-3xl font-bold text-gray-900'>Hack Letter Archives</h1>
                             <div className='w-4'></div>
                             <UserButton />
                         </div>
@@ -47,17 +66,11 @@ const DashboardPage = async (props: Props) => {
 
                     <Separator />
                     
-                    <Button onClick={handleSummarize}>
+                    <Button className="bg-orange-600" onClick={handleSummarize}>
                         Summarize HackerNews
                     </Button>
 
-                    <div className="mt-4">
-                        {summaries.map((summary, index) => (
-                            <div key={index} className="mb-2">
-                                {summary}
-                            </div>
-                        ))}
-                    </div>
+                    <div className="mt-4"></div>
                 </div>
             </div>
         </div>

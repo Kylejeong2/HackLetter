@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
-import { scrapeArticle } from '../scrapeArticle';
+import { scrapeArticle } from './scrapeArticle';
 import axios from "axios";
 
-export async function Post() {
+export default async function main() {
     try {
         // Step 1: Scrape Hacker News
         const response = await axios.get('api/scrapeHackerNews');
