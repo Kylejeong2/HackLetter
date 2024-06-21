@@ -30,8 +30,9 @@ export async function POST(req: Request) {
         `,
       },
     ],
-    stream: true,
+    // stream: true,
   });
-  const stream = OpenAIStream(response);
-  return new StreamingTextResponse(stream);
+  // const stream = OpenAIStream(response);
+  // return new StreamingTextResponse(stream);
+  return response
 }

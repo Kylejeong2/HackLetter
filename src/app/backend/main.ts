@@ -11,6 +11,8 @@ export default async function main() {
         // Step 2: Extract URLs from the JSON data
         const urls = hackerNewsData.map((item: any) => item.url);
 
+        //to add functionality to see if theres a text submission first before taking url
+
         // Step 3: Scrape articles using the extracted URLs
         const articles = await Promise.all(urls.map((url: string) => scrapeArticle(url)));
 
@@ -21,7 +23,7 @@ export default async function main() {
             summaries.push(summary)
         }
         // Output the summaries
-        // console.log(summaries);
+        console.log(summaries);
         return(summaries)
 
     } catch (error) {
