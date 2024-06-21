@@ -23,7 +23,7 @@ export async function GET() {
     // fs.writeFileSync(filePath, fileContent);
 
     console.log('Top 5 stories saved.');
-    console.log(top5Stories)
+    console.log(top5Stories) // array of json format
     return NextResponse.json(top5Stories)
 
   } catch (error) {

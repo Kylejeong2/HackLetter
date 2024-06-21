@@ -5,7 +5,7 @@ import { Separator } from '@/components/ui/separator';
 import { UserButton, auth } from '@clerk/nextjs';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React from 'react';
 import axios from "axios";
 import { NextResponse } from 'next/server';
 import { scrapeArticle } from '../backend/scrapeArticle';
@@ -21,14 +21,25 @@ const DashboardPage = async (props: Props) => {
         try {
                 // Step 1: Scrape Hacker News
             const response = await axios.get('api/scrapeHackerNews');
-            const hackerNewsData = response.data; 
+            const hackerNewsData = response.data; // array of JSON data
+            console.log(hackerNewsData)
 
             // Step 2: Extract URLs from the JSON data
-            const urls = hackerNewsData.map((item: any) => item.url);
+            // const urls = hackerNewsData.map((item: any) => item.url);
+            const urls = []
+            for(let i = 0; i < hackerNewsData.length; i++){
+                urls.push(hackerNewsData[i].url)
+            }
+            console.log("these are the URLS")
+            console.log(urls)
 
             // Step 3: Scrape articles using the extracted URLs
-            const articles = await Promise.all(urls.map((url: string) => scrapeArticle(url)));
-
+            const articles = []
+            for(let i = 0; i < urls.length; i++){
+                let article = await axios.get('api/scrapeArticle', { url: urls[i] })
+                articles.push(article.data.data)
+            }
+            
             // Step 4: Summarize the articles
             let summaries = []
             for(let i = 0; i < articles.length; i++){

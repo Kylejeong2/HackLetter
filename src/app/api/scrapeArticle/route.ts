@@ -1,10 +1,10 @@
 import axios from 'axios';
 import * as cheerio from 'cheerio'; //to scrape website
+import { NextResponse } from 'next/server';
 
 export async function GET(req: Request){
     try {
-
-        const url = await req.json;
+        const { url } = await req.json();
         // Fetch the HTML content of the web page
         const { data } = await axios.get(String(url));
         
@@ -14,11 +14,12 @@ export async function GET(req: Request){
         // Select the main article content using a suitable selector
         // The selector may vary based on the website structure
         const articleContent = $('article').text().trim();
-        
-        return articleContent;
-    } catch (error) {
+        console.log(articleContent)
+        return NextResponse.json(articleContent);
+
+    } catch(error) {
         console.error(`Error fetching the article: ${error}`);
-        return '';
+        return new NextResponse("Error", { status:500 });
     }
 }
 

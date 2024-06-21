@@ -1,5 +1,5 @@
 import { OpenAIApi, Configuration } from "openai-edge";
-import { OpenAIStream, StreamingTextResponse } from "ai";
+// import { OpenAIStream, StreamingTextResponse } from "ai";
 // /api/completion
 const config = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
