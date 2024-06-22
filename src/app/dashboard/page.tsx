@@ -21,24 +21,22 @@ const DashboardPage = async (props: Props) => {
         try {
                 // Step 1: Scrape Hacker News
             const response = await axios.get('api/scrapeHackerNews');
-            const hackerNewsData = response.data; // array of JSON data
-            console.log(hackerNewsData)
+            // console.log(hackerNewsData)
 
-            // Step 2: Extract URLs from the JSON data
-            // const urls = hackerNewsData.map((item: any) => item.url);
-            const urls = []
-            for(let i = 0; i < hackerNewsData.length; i++){
-                urls.push(hackerNewsData[i].url)
-            }
-            console.log("these are the URLS")
-            console.log(urls)
+            // // Step 2: Extract URLs from the JSON data
+            // // const urls = hackerNewsData.map((item: any) => item.url);
+            // const urls = []
+            // for(let i = 0; i < hackerNewsData.length; i++){
+            //     urls.push(hackerNewsData[i].url)
+            // }
 
             // Step 3: Scrape articles using the extracted URLs
-            const articles = []
-            for(let i = 0; i < urls.length; i++){
-                let article = await axios.get('api/scrapeArticle', { url: urls[i] })
-                articles.push(article.data.data)
-            }
+            // const articles = []
+            // for(let i = 0; i < urls.length; i++){
+            //     let article = await axios.get('api/scrapeArticle', { url: urls[i] })
+            //     articles.push(article.data.data)
+            // }
+            let articles = [await axios.get('api/scrapeArticle', response)]
             
             // Step 4: Summarize the articles
             let summaries = []
@@ -47,7 +45,7 @@ const DashboardPage = async (props: Props) => {
                 summaries.push(summary)
             }
             // Output the summaries
-            console.log(summaries);
+            // console.log(summaries);
             return(summaries)
         } catch (error) {
             console.error('Failed to summarize articles', error);
@@ -80,6 +78,7 @@ const DashboardPage = async (props: Props) => {
                     <Button className="bg-orange-600" onClick={handleSummarize}>
                         Summarize HackerNews
                     </Button>
+                    
 
                     <div className="mt-4"></div>
                 </div>
