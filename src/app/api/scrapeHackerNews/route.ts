@@ -1,4 +1,5 @@
 import axios from 'axios';
+import * as cheerio from "cheerio";
 import { NextResponse } from 'next/server';
 // import fs from 'fs'; // for testing
 // import path from 'path';
@@ -14,17 +15,28 @@ export async function GET() {
     const storyPromises = top5StoryIds.map(id => axios.get(`${HN_ITEM_URL}/${id}.json`));
     const stories = await Promise.all(storyPromises);
 
-    const top5Stories = stories.map(story => story.data); //gets json data
+    const top5Stories = stories.map(story => story.data); //gets array of json data 
 
     // Saving to a file for testing
     // const filePath = path.resolve(__dirname, 'top5Stories.txt');
     // const fileContent = JSON.stringify(top5Stories, null, 2);
 
     // fs.writeFileSync(filePath, fileContent);
-
     console.log('Top 5 stories saved.');
-    // console.log(top5Stories) // array of json format
-    return NextResponse.json(top5Stories)
+    // console.log(top5Stories)
+    let articles = []
+        
+    for(let i = 0; i < top5Stories.length; i++){
+        // Fetch the HTML content of the web page
+        const { data } = await axios.get(top5Stories[i].url);
+        // Load the HTML into cheerio
+        const $ = cheerio.load(data);
+        const articleContent = $('article').text().trim();
+        articles.push(articleContent)
+    }
+
+    // return new NextResponse("working", {status: 200})
+    return NextResponse.json({articles})
 
   } catch (error) {
 

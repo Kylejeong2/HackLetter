@@ -8,6 +8,7 @@ import Link from 'next/link';
 import React from 'react';
 import axios from "axios";
 import { NextResponse } from 'next/server';
+import { useCompletion } from 'ai/react';
 import { scrapeArticle } from '../backend/scrapeArticle';
 // import main from '../backend/main';
 // import { eq } from 'drizzle-orm';
@@ -16,41 +17,13 @@ import { scrapeArticle } from '../backend/scrapeArticle';
 type Props = {}
 
 const DashboardPage = async (props: Props) => {
+    const { complete, completion } = useCompletion({
+        api: "/api/completion",
+      });
     // const {userId} = auth()
     const handleSummarize = async () => {
-        try {
-                // Step 1: Scrape Hacker News
-            const response = await axios.get('api/scrapeHackerNews');
-            // console.log(hackerNewsData)
-
-            // // Step 2: Extract URLs from the JSON data
-            // // const urls = hackerNewsData.map((item: any) => item.url);
-            // const urls = []
-            // for(let i = 0; i < hackerNewsData.length; i++){
-            //     urls.push(hackerNewsData[i].url)
-            // }
-
-            // Step 3: Scrape articles using the extracted URLs
-            // const articles = []
-            // for(let i = 0; i < urls.length; i++){
-            //     let article = await axios.get('api/scrapeArticle', { url: urls[i] })
-            //     articles.push(article.data.data)
-            // }
-            let articles = [await axios.get('api/scrapeArticle', response)]
-            
-            // Step 4: Summarize the articles
-            let summaries = []
-            for(let i = 0; i < articles.length; i++){
-                let summary = await axios.post('api/summarizeArticle', { prompt: articles[i] });
-                summaries.push(summary)
-            }
-            // Output the summaries
-            // console.log(summaries);
-            return(summaries)
-        } catch (error) {
-            console.error('Failed to summarize articles', error);
-            return new NextResponse("error", {status:500})
-        }
+        const response = await axios.get('api/scrapeHackerNews');
+        complete(response.data)
     };
 
   return (
@@ -79,6 +52,7 @@ const DashboardPage = async (props: Props) => {
                         Summarize HackerNews
                     </Button>
                     
+                    <div>{completion}</div>
 
                     <div className="mt-4"></div>
                 </div>
