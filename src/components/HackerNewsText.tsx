@@ -13,20 +13,19 @@ const HackerNewsText = (props: Props) => {
         api: "/api/summarizeArticle",
       });
 
-    const handleSummarize = async () => {
-        try {
-            const articles = await main();
-            const completions = [];
-
-            for (let i = 0; i < articles.length; i++) {
-                await complete(articles[i]);
-                completions.push(completion);
-            }
-            setList(completions);
+    const handleSummarize = () => {
+        main().then(articles => {
+            // for(let i = 0; i < articles.length; i++){
+            //     complete(articles[i]);
+            //     completions.push(completion)
+            // }
+            complete(articles[3])
+            completions.push(completion)
+            setList(completions)
             
-        } catch (error) {
+        }).catch(error => {
             console.error("Error fetching articles:", error);
-        }
+        });
     };
 
   return (

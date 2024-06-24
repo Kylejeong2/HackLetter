@@ -24,8 +24,7 @@ export async function POST(req: Request) {
       {
         role: "user",
         content: `
-        I am trying to summarize this article as concise and accurate as possible, making sure to include key points.
-        Summarize the article at this url: ##${prompt}##
+        Give me a summary of the article at this url: ##${prompt}##
         Keep the response about a paragraph long. Make it sound like a human wrote it, without mentioning the word article. 
         `,
       },
