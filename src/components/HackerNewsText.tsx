@@ -19,10 +19,9 @@ const HackerNewsText = (props: Props) => {
             //     complete(articles[i]);
             //     completions.push(completion)
             // }
-            complete(articles[3])
+            complete(articles[1])
             completions.push(completion)
             setList(completions)
-            
         }).catch(error => {
             console.error("Error fetching articles:", error);
         });

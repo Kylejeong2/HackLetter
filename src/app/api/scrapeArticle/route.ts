@@ -7,9 +7,6 @@ export async function GET(req: Request){
         const hackerNewsData = await req;
 
         let urls = []
-        for(let i = 0; i < hacker)
-
-        let urls = []
         for(let i = 0; i < hackerNewsData.length; i++){
             urls.push(hackerNewsData[i].url)
         }

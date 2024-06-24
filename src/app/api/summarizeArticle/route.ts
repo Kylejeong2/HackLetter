@@ -24,13 +24,14 @@ export async function POST(req: Request) {
       {
         role: "user",
         content: `
-        Give me a summary of the article at this url: ##${prompt}##
-        Keep the response about a paragraph long. Make it sound like a human wrote it, without mentioning the word article. 
+        Give me a summary of this content: """ ##${prompt}## """.
+        Keep the response about a paragraph long. Write with a neutral and informative tone, without mentioning the words "article" or "blog". 
         `,
       },
     ],
     stream: true,
   });
   const stream = OpenAIStream(response);
+  console.log(stream)
   return new StreamingTextResponse(stream);
 }

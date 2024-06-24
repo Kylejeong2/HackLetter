@@ -31,8 +31,29 @@ export async function GET() {
     }
     console.log(articles)
 
+    let content = []
+    // for(let i = 0; i < articles.length; i++){
+    //   // Fetch the HTML content of the web page
+    //   const { data } = await axios.get(articles[i]);
+    //   // Load the HTML into cheerio
+    //   const $ = cheerio.load(data);
+    //   let articleContent = $('article').text().trim();
+    //   articleContent = articleContent.replace(/[\n\t]/g, '')
+    //   content.push(articleContent)
+    // }
+
+    // Fetch the HTML content of the web page
+    const { data } = await axios.get(articles[0]);
+    // Load the HTML into cheerio
+    const $ = cheerio.load(data);
+    let articleContent = $('article').text().trim();
+    articleContent = articleContent.replace(/[\n\t]/g, '')
+    content.push(articleContent)
+
+    // console.log(content)
+
     // return new NextResponse("working", {status: 200})
-    return NextResponse.json({articles})
+    return NextResponse.json({content}) // json { articles: [] }
 
   } catch (error) {
 
