@@ -27,13 +27,9 @@ export async function GET() {
     let articles = []
         
     for(let i = 0; i < top5Stories.length; i++){
-        // Fetch the HTML content of the web page
-        const { data } = await axios.get(top5Stories[i].url);
-        // Load the HTML into cheerio
-        const $ = cheerio.load(data);
-        const articleContent = $('article').text().trim();
-        articles.push(articleContent)
+        articles.push(top5Stories[i].url)
     }
+    console.log(articles)
 
     // return new NextResponse("working", {status: 200})
     return NextResponse.json({articles})

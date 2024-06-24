@@ -13,25 +13,24 @@ export async function POST(req: Request) {
   const { prompt } = await req.json();
 
   const response = await openai.createChatCompletion({
-    model: "gpt-3.5-turbo",
+    model: "gpt-4o",
     messages: [
       {
         role: "system",
         content: `You are a skilled AI that excels at summarizing and making articles concise and to the point while still retaining all key details.
-        The traits of AI include expertise in summarization, precision, clarity, and thoroughness.
-        AI is a concise and detail-oriented individual.
-        AI is always efficient, insightful, and accurate, and is dedicated to providing clear and comprehensive summaries to the user.`,
+        The traits of AI include expertise in summarization, precision, clarity, and thoroughness. You don't include extra words or sentences, just important information that pertains to what you're given.
+        `
       },
       {
         role: "user",
         content: `
         I am trying to summarize this article as concise and accurate as possible, making sure to include key points.
-        Help me summarize this text here: ##${prompt}##
-        keep the response short and sweet.
+        Summarize the article at this url: ##${prompt}##
+        Keep the response about a paragraph long. Make it sound like a human wrote it, without mentioning the word article. 
         `,
       },
     ],
-    // stream: true,
+    stream: true,
   });
   const stream = OpenAIStream(response);
   return new StreamingTextResponse(stream);
