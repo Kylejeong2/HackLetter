@@ -14,6 +14,10 @@ type Props = {
     }
 };
 
+type LetterProps = {
+    content: string;
+};
+
 const LetterPage = async ({params: { letterId }}: Props) => {
     const {userId} = await auth()
     if (!userId){
@@ -32,6 +36,12 @@ const LetterPage = async ({params: { letterId }}: Props) => {
     }
 
     const letter = letters[0];
+
+    const HackLetterComponent: React.FC<LetterProps> = ({ content }) => {
+        return (
+          <div dangerouslySetInnerHTML={{ __html: content }} />
+        );
+      };
 
   return (
     <div className='min-h-screen grainy p-8'>
@@ -57,7 +67,7 @@ const LetterPage = async ({params: { letterId }}: Props) => {
             <div className="h-4"></div>
             <div className='border-stone-200 shadow-xl border rounded-lg px-16 py-8 w-full'>
                 {/* HTML content of the letter will go here */}
-                
+                <HackLetterComponent content={letter.content}/>
             </div>
             
         </div>
