@@ -38,7 +38,7 @@ const LetterPage = async ({params: { letterId }}: Props) => {
         <div className='max-w-4xl mx-auto'>
             <div className='border shadow-xl border-stone-200 rounded-lg p-4 flex items-center'>
                 <Link href="/dashboard">
-                    <Button className="bg-green-600" size="sm">
+                    <Button className="bg-orange-600" size="sm">
                         Back
                     </Button>
                 </Link>
@@ -56,6 +56,8 @@ const LetterPage = async ({params: { letterId }}: Props) => {
 
             <div className="h-4"></div>
             <div className='border-stone-200 shadow-xl border rounded-lg px-16 py-8 w-full'>
+                {/* HTML content of the letter will go here */}
+                
             </div>
             
         </div>
