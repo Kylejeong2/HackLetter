@@ -1,4 +1,17 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# HackLetter
+
+<img width="1799" alt="Hackletter" src="/public/HackletterSS.png">
+
+The best of Hacker News summarized with AI and sent to your inbox daily!
+
+Check it out at www.hackletter.co !
+
+## Features + Release Videos
+
+- Initial Release of MVP (https://twitter.com/kylejeong21/status/1807661811854127510)
+- Adding Scrapegraph-AI to the summarization (https://twitter.com/kylejeong21/status/1808690306952613978)
+- HackLetter Archives (https://twitter.com/kylejeong21/status/1810010182782689309)
+
 
 ## Getting Started
 
@@ -39,27 +52,14 @@ Tech Stack:
 
 1) Nextjs 14
 2) Shadcn ( tailwind )
-3) OpenAI ( Dalle )
+3) OpenAI
 4) Vercel Edge Runtime
 5) DrizzleORM
 6) NeonDB
-7) Firebase Storage
-8) TipTap WYSIWYG Editor
+7) MongoDB
+8) Python
 9) Vercel AI SDK
-
-
-.env file:
-
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
-CLERK_SECRET_KEY=
-NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
-NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
-NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/dashboard
-NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/dashboard
-
-DATABASE_URL= // sslmode=require
-OPENAI_API_KEY = 
-FIREBASE_API_KEY = 
+10) ScrapeGraph AI 
 
 Install Next.js :: npm install next@latest react@latest react-dom@latest
 or 
