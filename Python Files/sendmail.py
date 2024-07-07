@@ -8,7 +8,8 @@ from test_data import test
 
 load_dotenv()
 
-secret = os.getenv("MAILJET_SECRET_KEY")
+# secret = os.getenv("MAILJET_SECRET_KEY")
+secret = os.getenv("MAILJET_SECsdfadsRET_KEY")
 api = os.getenv('MAILJET_API_KEY')
 
 mailjet = Client(auth=(api, secret), version='v3.1')
@@ -28,7 +29,7 @@ current_date = datetime.now().strftime("%B %d, %Y")
 # collection = db['emails']
 
 # emails = [doc['email'] for doc in collection.find({}, {'email': 1})] #list of all emails in the database
-#print(emails)
+# #print(emails)
 emails = ["Kylejeong21@gmail.com"]
 
 #for loop send emails to all of the emails in the list 
@@ -63,6 +64,6 @@ for email in emails:
 # print("Sent emails to: ")
 # print(emails)
 name = "Hackletter {}".format(current_date)
-content = '<div style="width: 100%; max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 20px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);"><div style="font-size: 24px; font-weight: bold; margin: 20px 0;">Your Daily HackerNews Brief</div><div style="margin-bottom: 20px;"><h2 style="font-size: 20px; margin: 10px 0;"><a href="' + urls[0] + '" target="_blank" style="color: inherit; text-decoration: none;">'+ titles[0] +'</a></h2><p id="article1" style="font-size: 16px; line-height: 1.5;">' + summaries[0] + '</p></div><div style="margin-bottom: 20px;"><h2 style="font-size: 20px; margin: 10px 0;"><a href="' + urls[1] + '" target="_blank" style="color: inherit; text-decoration: none;">' + titles[1]+ '</a></h2><p id="article2" style="font-size: 16px; line-height: 1.5;">' + summaries[1] + '</p></div><div style="margin-bottom: 20px;"><h2 style="font-size: 20px; margin: 10px 0;"><a href="' + urls[2] + '" target="_blank" style="color: inherit; text-decoration: none;">' + titles[2] + '</a></h2><p id="article3" style="font-size: 16px; line-height: 1.5;">' + summaries[2] + '</p></div><div style="margin-bottom: 20px;"><h2 style="font-size: 20px; margin: 10px 0;"><a href="' + urls[3] + '" target="_blank" style="color: inherit; text-decoration: none;">' + titles[3] + '</a></h2><p id="article4" style="font-size: 16px; line-height: 1.5;">' + summaries[3] + '</p></div><div style="margin-bottom: 20px;"><h2 style="font-size: 20px; margin: 10px 0;"><a href="' + urls[4] + '" target="_blank" style="color: inherit; text-decoration: none;">' + titles[4] + '</a></h2><p id="article5" style="font-size: 16px; line-height: 1.5;">' + summaries[4] + '</p></div><div style="text-align: center; padding: 20px 0; font-size: 14px; color: #888888;"><p>&copy; 2024 Hack Letter. All rights reserved.</p><p><a href="" target="_blank" style="color: #888888; text-decoration: none;">Report Bugs to @Kylejeong21 on X</a></p></div></div>'
+content = '<div style="width: 100%; max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 20px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);"><div style="font-size: 24px; font-weight: bold; margin: 20px 0;">Your Daily HackerNews Brief</div><div style="margin-bottom: 20px;"><h2 style="font-size: 20px; margin: 10px 0;"><a href="' + urls[0] + '" target="_blank">'+ titles[0] +'</a></h2><p id="article1" style="font-size: 16px; line-height: 1.5;">' + summaries[0] + '</p></div><div style="margin-bottom: 20px;"><h2 style="font-size: 20px; margin: 10px 0;"><a href="' + urls[1] + '" target="_blank">' + titles[1]+ '</a></h2><p id="article2" style="font-size: 16px; line-height: 1.5;">' + summaries[1] + '</p></div><div style="margin-bottom: 20px;"><h2 style="font-size: 20px; margin: 10px 0;"><a href="' + urls[2] + '" target="_blank">' + titles[2] + '</a></h2><p id="article3" style="font-size: 16px; line-height: 1.5;">' + summaries[2] + '</p></div><div style="margin-bottom: 20px;"><h2 style="font-size: 20px; margin: 10px 0;"><a href="' + urls[3] + '" target="_blank">' + titles[3] + '</a></h2><p id="article4" style="font-size: 16px; line-height: 1.5;">' + summaries[3] + '</p></div><div style="margin-bottom: 20px;"><h2 style="font-size: 20px; margin: 10px 0;"><a href="' + urls[4] + '" target="_blank">' + titles[4] + '</a></h2><p id="article5" style="font-size: 16px; line-height: 1.5;">' + summaries[4] + '</p></div><div style="text-align: center; padding: 20px 0; font-size: 14px; color: #888888;"><p>&copy; 2024 Hack Letter. All rights reserved.</p><p><a href="" target="_blank" style="color: #888888; text-decoration: none;">Report Bugs to @Kylejeong21 on X</a></p></div></div>'
 
 print([name, content]) # list, string, string

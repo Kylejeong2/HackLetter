@@ -4,8 +4,6 @@ from openai import OpenAI
 from scrapegraph import scrapeGraph 
 import os
 
-# app = Flask(__name__)
-
 def getStories():
     # URL to get the top stories IDs from Hacker News
     top_stories_url = 'https://hacker-news.firebaseio.com/v0/topstories.json'
@@ -28,7 +26,7 @@ def getStories():
             return soup.get_text().replace("\n", "")
                 
         except requests.RequestException as e:
-            print(f"Failed to fetch {url}: {e}")
+            # print(f"Failed to fetch {url}: {e}")
             return None
 
     top5stories = [] # collects top 5 stories
@@ -72,12 +70,12 @@ def main():
     # if story is from twitter - use scrapegraph ai (better than normal scraping for twitter posts)
     for i, n in enumerate(storyContent): #enumerate to get index for url 
         # if the story content is all messed up
-        if "x.com" in urls[i] or "twitter.com" in urls[i] or "beehiiv" in storyContent.lower() or ("400" in storyContent and "bad" in storyContent.lower() and "request" in storyContent.lower()) or ("403" in storyContent and "forbidden" in storyContent.lower()):
+        if "x.com" in urls[i] or "twitter.com" in urls[i] or "beehiiv" in n.lower() or ("400" in n and "bad" in n.lower() and "request" in n.lower()) or ("403" in n and "forbidden" in n.lower()):
             summaries.append(scrapeGraph(urls[i])) # urls from that index in the list
         else: 
             summaries.append(summarize(n))
 
-    print(summaries)
+    # print(summaries)
     return [summaries, storyTitles, urls]
 
 if __name__ == "__main__":

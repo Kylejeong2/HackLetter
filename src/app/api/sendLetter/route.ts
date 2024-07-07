@@ -1,8 +1,7 @@
 import { NextResponse } from "next/server";
 import { exec } from "child_process";
-import { db } from "@/lib/db";
-import { $letters } from "@/lib/db/schema";
-import { stderr } from "process";
+
+export const runtime = "edge";
 
 export async function GET(){
     try {
