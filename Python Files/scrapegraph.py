@@ -27,14 +27,12 @@ def scrapeGraph(url):
     )
 
     result = smart_scraper_graph.run()
-    print(json.dumps(result, indent=4))
-    print("this is the summary\n")
-    print(result["summary"])
+    # print(json.dumps(result, indent=4))
+    # print("this is the summary\n")
+    # print(result["summary"])
 
     # Get graph execution info
     graph_exec_info = smart_scraper_graph.get_execution_info()
-    print(prettify_exec_info(graph_exec_info))
+    # print(prettify_exec_info(graph_exec_info))
 
     return result["summary"]
-
-# scrapeGraph("https://x.com/kylejeong21/status/1807661811854127510") 
