@@ -1,8 +1,6 @@
 import { NextResponse } from "next/server";
 import { exec } from "child_process";
 
-// export const runtime = "edge";
-
 export async function GET(){
     try {
         const letterPromise = new Promise((resolve, reject) => {

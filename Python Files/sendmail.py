@@ -23,9 +23,9 @@ summaries, titles, urls = info[0], info[1], info[2]
 current_date = datetime.now().strftime("%B %d, %Y")
 
 #pull list of emails from mongodb 
-# client = MongoClient(os.getenv("MONGODB_CONNECTION"))
-# db = client['Hackletter']
-# collection = db['emails']
+client = MongoClient(os.getenv("MONGODB_CONNECTION"))
+db = client['Hackletter']
+collection = db['emails']
 
 # emails = [doc['email'] for doc in collection.find({}, {'email': 1})] #list of all emails in the database
 # #print(emails)

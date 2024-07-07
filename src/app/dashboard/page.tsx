@@ -7,7 +7,7 @@ import React from 'react';
 import { $letters } from '@/lib/db/schema';
 // import { eq } from 'drizzle-orm';
 import { db } from '@/lib/db';
-// import CreateButton from '@/components/CreateButton';
+import CreateButton from '@/components/CreateButton';
 
 type Props = {}
 
