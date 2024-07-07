@@ -7,7 +7,7 @@ import React from 'react';
 import { $letters } from '@/lib/db/schema';
 // import { eq } from 'drizzle-orm';
 import { db } from '@/lib/db';
-import CreateButton from '@/components/CreateButton';
+// import CreateButton from '@/components/CreateButton';
 
 type Props = {}
 
@@ -40,7 +40,7 @@ const DashboardPage = async (props: Props) => {
                     <div className="mt-4"></div>
 
                     <div className='grid sm:grid-cols-3 md:grid-cols-5 grid-cols-1 gap-3'>
-                        <CreateButton /> 
+                        {/* <CreateButton />  */}
 
                         {letters.map(letter => {
                             return (

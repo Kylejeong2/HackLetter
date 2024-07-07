@@ -8,18 +8,17 @@ from test_data import test
 
 load_dotenv()
 
-# secret = os.getenv("MAILJET_SECRET_KEY")
-secret = os.getenv("MAILJET_SECsdfadsRET_KEY")
+secret = os.getenv("MAILJET_SECRET_KEY")
 api = os.getenv('MAILJET_API_KEY')
 
 mailjet = Client(auth=(api, secret), version='v3.1')
 
 #only query this once per day 
-# info = main()
-# summaries, titles, urls = info[0], info[1], info[2]
+info = main()
+summaries, titles, urls = info[0], info[1], info[2]
 
 #testing data to populate data
-summaries, titles, urls = test[0], test[1], test[2]
+# summaries, titles, urls = test[0], test[1], test[2]
 
 current_date = datetime.now().strftime("%B %d, %Y")
 
