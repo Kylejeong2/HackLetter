@@ -5,7 +5,7 @@ import axios from "axios";
 // 	runtime: 'edge',
 // };
 
-export default async function handler() {
+export default async function GET() {
 	try {
         const handleLetter = async () => {
             const response = await axios.get('/api/sendLetter');

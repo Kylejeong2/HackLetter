@@ -96,7 +96,7 @@ export default function Home() {
         </div>
         <div className="flex flex-col gap-6 max-w-2xl items-center">
           <Typography className="max-w-2xl" variant="h1">
-            Literally just your Email.
+            Literally <span className='text-orange-600'>JUST</span> your Email.
           </Typography>
           <Typography className="max-w-2xl" variant="p">
             Outlook, Gmail, Edu, even Hotmail! That's all you'll need to start getting HackLetters sent to your 
@@ -113,7 +113,7 @@ export default function Home() {
           <Typography className="max-w-2xl" variant="h1">
             Current Roadmap
           </Typography>
-          <div>This is what's up with HackLetter, from start to now!s</div>
+          <div>This is what's up with HackLetter, from the start!</div>
             <Roadmap />
         </div>
       </div>

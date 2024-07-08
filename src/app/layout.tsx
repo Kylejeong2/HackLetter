@@ -14,17 +14,11 @@ export const metadata: Metadata = {
   title:
     'HackLetter - The best of HackerNews right in your inbox',
   description:
-    'Quickly link new on-call tickets to similar past incidents and their solutions. All directly in Slack the moment an incident happens.',
-  openGraph: {
-    images: '/opengraph-image.png'
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title:
-      'HackLetter- Information you need during on-call emergencies',
-    description:
-      'Quickly link new on-call tickets to similar past incidents and their solutions. All directly in Slack the moment an incident happens.',
-    images: ['https://i.imgur.com/MPMcyPP.png']
+    'Enter your email and get the Top 5 stories on HackerNews, Summarized with AI and sent right to your Inbox. Read the past HackLetters through the Archive.',
+  icons: {
+    icon:['/favicon.ico?v=4'],
+    apple:['apple-touch-icon.png?v=4'],
+    shortcut:['apple-touch-icon.png']
   }
 }
 
@@ -37,7 +31,6 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <Provider>
-          {/* <body className={inter.className}>{children}</body> */}
           <Analytics />
           <body className={inter.className}>
           <ThemeProvider

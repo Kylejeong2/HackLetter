@@ -27,9 +27,9 @@ client = MongoClient(os.getenv("MONGODB_CONNECTION"))
 db = client['Hackletter']
 collection = db['emails']
 
-# emails = [doc['email'] for doc in collection.find({}, {'email': 1})] #list of all emails in the database
+emails = [doc['email'] for doc in collection.find({}, {'email': 1})] #list of all emails in the database
 # #print(emails)
-emails = ["Kylejeong21@gmail.com"]
+# emails = ["Kylejeong21@gmail.com"]
 
 #for loop send emails to all of the emails in the list 
 for email in emails:
