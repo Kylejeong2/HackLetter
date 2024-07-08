@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { MongoClient } from 'mongodb';
 
-const uri = process.env.MONGODB_URI;
+const uri = process.env.MONGODB_CONNECTION;
 
 if (!uri) {
   throw new Error('Please add your Mongo URI to .env');
