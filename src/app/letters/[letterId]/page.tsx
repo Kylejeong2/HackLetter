@@ -4,6 +4,7 @@ import { db } from '@/lib/db';
 import { $letters } from '@/lib/db/schema';
 import { auth } from '@clerk/nextjs';
 import { and, eq } from 'drizzle-orm';
+import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import React from 'react'
@@ -39,25 +40,26 @@ const LetterPage = async ({params: { letterId }}: Props) => {
 
     const HackLetterComponent: React.FC<LetterProps> = ({ content }) => {
         return (
-          <div dangerouslySetInnerHTML={{ __html: content }} />
+          <div dangerouslySetInnerHTML={{ __html: content }} className='text-black rounded-3xl'/>
         );
       };
 
   return (
-    <div className='min-h-screen grainy p-8'>
-        <div className='max-w-4xl mx-auto'>
-            <div className='border shadow-xl border-stone-200 rounded-lg p-4 flex items-center'>
+    <div className='min-h-screen p-8 w-full'>
+        <div className='max-w-7xl mx-auto'>
+            <div className='border shadow-xl border-stone-200 rounded-lg p-4 flex items-center w-full bg-slate-900'>
                 <Link href="/dashboard">
-                    <Button className="bg-orange-600" size="sm">
+                    <Button className="bg-orange-600 text-white" size="sm">
+                        <ArrowLeft />
                         Back
                     </Button>
                 </Link>
                 <div className="w-3"></div>
-                <span className='font-semibold'>
+                <span className='font-semibold text-white'>
                     {(await user).firstName} {(await user).lastName}
                 </span>
-                <span className='inline-block mx-1'>/</span>
-                <span className='text-stone-500 font-semibold'>
+                <span className='inline-block mx-1 text-white'>/</span>
+                <span className='text-stone-400 font-semibold'>
                     {letter.name}
                 </span>
                 <div className="ml-auto">
@@ -65,9 +67,12 @@ const LetterPage = async ({params: { letterId }}: Props) => {
             </div>
 
             <div className="h-4"></div>
-            <div className='border-stone-200 shadow-xl border rounded-lg px-16 py-8 w-full'>
+            <div className='border-stone-200 shadow-xl border rounded-lg px-16 py-8 w-full bg-slate-900'>
                 {/* HTML content of the letter will go here */}
-                <HackLetterComponent content={letter.content}/>
+                <div className='rounded-full'>
+                    <HackLetterComponent content={letter.content} />
+                </div>
+                
             </div>
             
         </div>

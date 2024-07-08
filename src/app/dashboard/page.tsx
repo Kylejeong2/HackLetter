@@ -7,7 +7,7 @@ import React from 'react';
 import { $letters } from '@/lib/db/schema';
 // import { eq } from 'drizzle-orm';
 import { db } from '@/lib/db';
-import CreateButton from '@/components/CreateButton';
+// import CreateButton from '@/components/CreateButton';
 
 type Props = {}
 
@@ -17,17 +17,17 @@ const DashboardPage = async (props: Props) => {
 
   return (
     <>
-        <div className='grainy min-h-screen'>
+        <div className='min-h-screen'>
             <div className='max-w-7xl mx-auto p-10'>
                 <div className='h-14'>
                     <div className='flex justify-between items-center md:flex-row flex-col'>
                         <div className='flex items-center'>
                             <Link href="/">
-                                <Button className='bg-orange-600' size="sm"><ArrowLeft className='mr-1 w-4 h-4'/>Back</Button>
+                                <Button className='bg-orange-600 text-white' size="sm"><ArrowLeft className='mr-1 w-4 h-4'/>Back</Button>
                             </Link>
 
                             <div className='w-4'></div>
-                            <h1 className='text-3xl font-bold text-gray-900'>HackLetter Archives</h1>
+                            <h1 className='text-3xl font-bold text-white'>HackLetter Archives</h1>
                             <div className='w-4'></div>
                             <UserButton />
                         </div>
@@ -45,7 +45,7 @@ const DashboardPage = async (props: Props) => {
                         {letters.map(letter => {
                             return (
                                 <a href={`/letters/${letter.id}`} key={letter.id}>
-                                    <div className='border border-stone-200 rounded-lg overflow-hidden flex flex-col hover:shadow-xl transition hover:-translate-y-1'>
+                                    <div className='border bg-slate-900 border-stone-200 rounded-lg overflow-hidden flex flex-col hover:shadow-xl transition hover:-translate-y-1'>
                                         {/* <img 
                                             width={400}
                                             height={200}
@@ -53,7 +53,7 @@ const DashboardPage = async (props: Props) => {
                                             src={letter.imageUrl || ""}
                                         /> */}
                                     <div className='p-4'>
-                                        <h3 className='text-xl font-semibold text-gray-900'>{letter.name}</h3>
+                                        <h3 className='text-xl font-semibold text-white'>{letter.name}</h3>
                                         <div className='h-1'></div>
                                         <p className='text-sm text-gray-500'>
                                             {new Date(letter.createdAt).toLocaleDateString()}
