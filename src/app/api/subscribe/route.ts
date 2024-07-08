@@ -12,14 +12,15 @@ const client = new MongoClient(uri);
 export async function POST(request: NextRequest) {
   try {
     const { email } = await request.json();
+    console.log(email)
 
     if (!email) {
       return NextResponse.json({ error: 'Email is required' }, { status: 400 });
     }
 
     await client.connect();
-    const database = client.db('your_database_name');
-    const collection = database.collection('subscribers');
+    const database = client.db('Hackletter');
+    const collection = database.collection('emails');
 
     const existingSubscriber = await collection.findOne({ email });
 
@@ -27,7 +28,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Email already subscribed' }, { status: 400 });
     }
 
-    await collection.insertOne({ email, subscribedAt: new Date() });
+    await collection.insertOne({ email });
 
     return NextResponse.json({ message: 'Subscribed successfully' }, { status: 200 });
   } catch (error) {

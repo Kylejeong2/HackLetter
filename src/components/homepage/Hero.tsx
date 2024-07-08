@@ -5,7 +5,34 @@ import Typography from '../ui/typography';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import Image from 'next/image';
-import Link from 'next/link';
+import styled from "styled-components";
+import { keyframes } from "styled-components";
+
+const hue = keyframes`
+ from {
+   -webkit-filter: hue-rotate(0deg);
+ }
+ to {
+   -webkit-filter: hue-rotate(-360deg);
+ }
+`;
+const AnimatedGradientText = styled.h3`
+  color: #f35626;
+  background-image: -webkit-linear-gradient(92deg, #f35626, #feab3a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-animation: ${hue} 5s infinite linear;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-feature-settings: "kern";
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 48px;
+  overflow-wrap: break-word;
+  text-align: center;
+  text-rendering: optimizelegibility;
+  -moz-osx-font-smoothing: grayscale;
+`;
 
 export default function Hero() {
   const [email, setEmail] = useState('');
@@ -26,7 +53,7 @@ export default function Hero() {
         setMessage('Successfully subscribed!');
         setEmail('');
       } else {
-        setMessage('Subscription failed. Please try again.');
+        setMessage("You've already subscribed! Thanks for your support!");
       }
     } catch (error) {
       setMessage('An error occurred. Please try again.');
@@ -43,24 +70,20 @@ export default function Hero() {
         Summarized with AI and sent right to your Inbox. Read
         the past HackLetters through the <span className='text-orange-600'>Archive</span>.
       </Typography>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4 items-center">
+      <form onSubmit={handleSubmit} className="flex gap-4 items-center">
         <Input
           type="email"
           placeholder="Enter your email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
           required
+          className="flex-grow"
         />
-        <Button type="submit" size="sm" color="primary">
-          Subscribe
+        <Button type="submit" size="sm">
+          <AnimatedGradientText>Subscribe</AnimatedGradientText>
         </Button>
       </form>
-      {message && <p className="text-sm">{message}</p>}
-      <Link href="/" target="_blank">
-        <Button size="sm" color="ghost">
-          View Archive
-        </Button>
-      </Link>
+      {message && <p className="text-sm bg-orange-600 rounded-full px-10 py-3">{message}</p>}
       <Image
         width={1024}
         height={632}
