@@ -4,14 +4,14 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { usePathname } from 'next/navigation'
 import Typography from '@/components/ui/typography'
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerHeader,
-  DrawerTrigger
-} from '@/components/ui/drawer'
-import { MenuIcon, X } from 'lucide-react'
+// import {
+//   Drawer,
+//   DrawerClose,
+//   DrawerContent,
+//   DrawerHeader,
+//   DrawerTrigger
+// } from '@/components/ui/drawer'
+// import { MenuIcon, X } from 'lucide-react'
 
 interface SidebarProps
   extends React.HTMLAttributes<HTMLDivElement> {}
@@ -19,7 +19,11 @@ interface SidebarProps
 export function Header({ className }: SidebarProps) {
   const pathname = usePathname()
   // const items = [
-    
+  //   // {
+  //   //   href: '/dashboard',
+  //   //   title: 'To the Archive ...',
+  //   //   openInNewTab: false
+  //   // }
   // ]
 
   const getLogo = () => (
@@ -98,7 +102,7 @@ export function Header({ className }: SidebarProps) {
             {getAuthButtons()}
           </div>
           {/* Mobile */}
-          <div className="md:hidden flex gap-x-4 items-center">
+          {/* <div className="md:hidden flex gap-x-4 items-center">
             {getAuthButtons()}
             <Drawer direction="right">
               <DrawerTrigger asChild>
@@ -109,7 +113,7 @@ export function Header({ className }: SidebarProps) {
                   <DrawerHeader>
                     <DrawerClose asChild>
                       <div className="w-full flex items-end justify-end">
-                        <X />
+                      {getAuthButtons()}
                       </div>
                     </DrawerClose>
                   </DrawerHeader>
@@ -119,7 +123,7 @@ export function Header({ className }: SidebarProps) {
                 </div>
               </DrawerContent>
             </Drawer>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

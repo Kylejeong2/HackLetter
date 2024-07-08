@@ -32,7 +32,7 @@ export default function RootLayout({
       <html lang="en">
         <Provider>
           <Analytics />
-          <body className={inter.className}>
+          <body className={`${inter.className} overflow-x-hidden`}>
           <ThemeProvider
             attribute="class"
             defaultTheme="dark"
@@ -40,7 +40,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <main
-              className={`flex min-h-screen flex-col ${inter.className}`}
+              className={`flex min-h-screen flex-col ${inter.className} overflow-x-hidden`}
             >
               <Header />
               <div className="flex flex-1 justify-center w-full">
@@ -59,3 +59,4 @@ export default function RootLayout({
     
   )
 }
+
