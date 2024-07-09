@@ -84,6 +84,8 @@ export default function Hero() {
         </Button>
       </form>
       {message && <p className="text-sm bg-orange-600 rounded-full px-10 py-3">{message}</p>}
+
+      <a href="https://www.producthunt.com/posts/hackletter?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-hackletter" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=467875&theme=light" alt="HackLetter - HackerNews&#0032;summarized&#0032;and&#0032;sent&#0032;to&#0032;your&#0032;inbox&#0032;daily&#0046; | Product Hunt" width="250" height="54" /></a>
       <Image
         width={1024}
         height={632}
