@@ -70,7 +70,7 @@ def main():
     # if story is from twitter - use scrapegraph ai (better than normal scraping for twitter posts)
     for i, n in enumerate(storyContent): #enumerate to get index for url 
         # if the story content is all messed up
-        if "x.com" in urls[i] or "twitter.com" in urls[i] or "beehiiv" in n.lower() or ("400" in n and "bad" in n.lower() and "request" in n.lower()) or ("403" in n and "forbidden" in n.lower()):
+        if "x.com" in urls[i] or "twitter.com" in urls[i] or n is None or "beehiiv" in n.lower() or ("400" in n and "bad" in n.lower() and "request" in n.lower()) or ("403" in n and "forbidden" in n.lower()):
             summaries.append(scrapeGraph(urls[i])) # urls from that index in the list
         else: 
             summaries.append(summarize(n))

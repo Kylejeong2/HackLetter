@@ -32,7 +32,7 @@ def scrapeGraph(url):
     # print(result["summary"])
 
     # Get graph execution info
-    graph_exec_info = smart_scraper_graph.get_execution_info()
+    # graph_exec_info = smart_scraper_graph.get_execution_info()
     # print(prettify_exec_info(graph_exec_info))
 
     return result["summary"]
