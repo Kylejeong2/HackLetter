@@ -16,6 +16,5 @@ export default function Roadmap() {
               <Tweet id="1810010182782689309" />
             </div>
         </div>
-   
   );
 }

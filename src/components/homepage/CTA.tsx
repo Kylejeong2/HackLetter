@@ -17,7 +17,8 @@ export default function CTA(){
             width={1024}
             height={632}
             alt=" "
-            src="/HackLetterSS.png"
+            src="/Drake.png"
+            className='rounded-xl'
           />
         </div>
     )
