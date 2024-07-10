@@ -8,17 +8,17 @@ from test_data import test
 
 load_dotenv()
 
-secret = os.getenv("MAILJET_SEC dRET_KEY")
+secret = os.getenv("MAILJET_SECRET_KEY")
 api = os.getenv('MAILJET_API_KEY')
 
 mailjet = Client(auth=(api, secret), version='v3.1')
 
 #only query this once per day 
-# info = main()
-# summaries, titles, urls = info[0], info[1], info[2]
+info = main()
+summaries, titles, urls = info[0], info[1], info[2]
 
 #testing data to populate data
-summaries, titles, urls = test[0], test[1], test[2]
+# summaries, titles, urls = test[0], test[1], test[2]
 
 current_date = datetime.now().strftime("%B %d, %Y")
 
@@ -27,9 +27,9 @@ client = MongoClient(os.getenv("MONGODB_CONNECTION"))
 db = client['Hackletter']
 collection = db['emails']
 
-# emails = [doc['email'] for doc in collection.find({}, {'email': 1})] #list of all emails in the database
+emails = [doc['email'] for doc in collection.find({}, {'email': 1})] #list of all emails in the database
 # #print(emails)
-emails = ["Kylejeong21@gmail.com"]
+# emails = ["Kylejeong21@gmail.com"]
 
 #for loop send emails to all of the emails in the list 
 for email in emails:

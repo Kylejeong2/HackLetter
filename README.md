@@ -5,6 +5,7 @@
 The best of Hacker News summarized with AI and sent to your inbox daily!
 
 Check it out at www.hackletter.co !
+Front-end hosted at [www.hack-letter.vercel.app](https://hack-letter.vercel.app/)
 
 ## Features + Release Videos
 
