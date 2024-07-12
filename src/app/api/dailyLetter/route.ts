@@ -1,27 +1,47 @@
-import { NextResponse } from 'next/server';
-import axios from "axios";
+import { NextResponse } from "next/server";
+import { exec } from "child_process";
+import { db } from "@/lib/db";
+import { $letters } from "@/lib/db/schema";
 
 export async function GET() {
     try {
-        const handleLetter = async () => {
-            const response = await axios.get('/api/sendLetter');
-    
-            if (response.status === 200) {
-                const { name, content } = await response.data;
-                const res = await axios.post('/api/saveLetter', {
-                    name: name,
-                    content: content
-                })
-                console.log(res.data)
-            } else {
-                // Handle error
-                return new NextResponse("error with saveLetter", {status: 500})
-            }
-        }
-        await handleLetter();
-        return new NextResponse("working", { status: 200 })
-        
+        // Logic from sendLetter
+        const letterPromise = new Promise((resolve, reject) => {
+            exec(
+                "cd 'python files' && source venv/bin/activate && python sendmail.py",
+                (error, stdout, stderr) => {
+                    if(error){
+                        console.error(error)
+                        reject(error)
+                    }
+                    resolve(stdout)
+                }
+            );
+        });
+
+        const rawLetterInfo: string = await letterPromise as string;
+        let cleanedString = rawLetterInfo.replace(/^\[|\]$/g, '');
+        const htmlStartIndex = cleanedString.indexOf('<');
+        let title = cleanedString.slice(0, htmlStartIndex);
+        title = title.replace(/^['"]|['"],\s*['"]?$/g, '').trim();
+        let htmlContent = cleanedString.slice(htmlStartIndex);
+        htmlContent = htmlContent.replace(/['"]?\]?$/g, '').trim();
+        htmlContent = htmlContent.replace(/'\]$/g, '').trim();
+
+        // Logic from saveLetter
+        const letter_ids = await db.insert($letters).values({
+            name: title,
+            content: htmlContent
+        }).returning({
+            insertedId: $letters.id
+        });
+
+        return NextResponse.json({
+            letter_id: letter_ids[0].insertedId,
+            message: "Letter created and saved successfully"
+        }, { status: 200 });
     } catch(error) {
-        return new NextResponse("error with sendletter", {status: 500})
+        console.error("Error in dailyLetter:", error);
+        return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
     }
 }
