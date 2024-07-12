@@ -1,12 +1,8 @@
 import { NextResponse } from 'next/server';
 import axios from "axios";
 
-// export const config = {
-// 	runtime: 'edge',
-// };
-
-export default async function handler() {
-	try {
+export async function GET() {
+    try {
         const handleLetter = async () => {
             const response = await axios.get('/api/sendLetter');
     
@@ -17,16 +13,15 @@ export default async function handler() {
                     content: content
                 })
                 console.log(res.data)
-                
             } else {
                 // Handle error
                 return new NextResponse("error with saveLetter", {status: 500})
             }
         }
-        handleLetter();
+        await handleLetter();
         return new NextResponse("working", { status: 200 })
         
-    }catch(error){
-        return new NextResponse("error with saveLetter", {status: 500})
+    } catch(error) {
+        return new NextResponse("error with sendletter", {status: 500})
     }
 }
