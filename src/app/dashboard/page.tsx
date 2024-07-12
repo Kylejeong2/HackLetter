@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import { UserButton, auth } from '@clerk/nextjs';
+import { UserButton } from '@clerk/nextjs';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
@@ -12,7 +12,6 @@ import CreateButton from '@/components/tools/CreateButton';
 type Props = {}
 
 const DashboardPage = async (props: Props) => {
-    const {userId} = auth()
     const letters = await db.select().from($letters);
 
   return (
@@ -40,7 +39,6 @@ const DashboardPage = async (props: Props) => {
                     <div className="mt-4"></div>
 
                     <div className='grid sm:grid-cols-3 md:grid-cols-5 grid-cols-1 gap-3'>
-                        {/* <CreateButton />  */}
 
                         {letters.map(letter => {
                             return (
