@@ -5,7 +5,7 @@ export async function GET(){
     try {
         const letterPromise = new Promise((resolve, reject) => {
             exec(
-                "cd 'python files' && source venv/bin/activate && python sendmail.py",
+                "cd python && source venv/bin/activate && python sendmail.py",
                 (error, stdout, stderr) => {
                     if(error){
                         console.error(error)
