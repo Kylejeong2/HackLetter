@@ -29,6 +29,11 @@ const CreateButton = () => {
         console.log(response)
     }
 
+  //   const handleLetter = async () => {
+  //     const response = await axios.get('/api/testing');
+  //     console.log(response)
+  // }
+
   return (
     <Button onClick={handleLetter}>
         Create Letter
