@@ -39,7 +39,7 @@ def getStories():
             urls.append(story['url'])
         else:
             top5stories.append(story['text'])
-            urls.append('https://news.ycombinator.com/item?id={}'.format(top_5_stories[i][id]))
+            urls.append('https://news.ycombinator.com/item?id={}'.format(top_5_stories[i]["id"]))
 
         titles.append(story["title"])
 
