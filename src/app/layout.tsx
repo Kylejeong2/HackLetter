@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import { ClerkProvider } from '@clerk/nextjs'
 import Provider from '@/components/Provider'
 import { ThemeProvider } from '@/providers/theme-provider'
 import { Header } from '@/components/common/header'
@@ -28,7 +27,6 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <ClerkProvider>
       <html lang="en">
         <Provider>
           <Analytics />
@@ -54,9 +52,7 @@ export default function RootLayout({
         </body>
         </Provider>
         
-      </html>
-    </ClerkProvider>
-    
+      </html>    
   )
 }
 

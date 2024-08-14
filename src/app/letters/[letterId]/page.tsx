@@ -1,8 +1,6 @@
 import { Button } from '@/components/ui/button';
-import { clerk } from '@/lib/clerk-server';
 import { db } from '@/lib/db';
 import { $letters } from '@/lib/db/schema';
-import { auth } from '@clerk/nextjs';
 import { and, eq } from 'drizzle-orm';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
@@ -20,13 +18,6 @@ type LetterProps = {
 };
 
 const LetterPage = async ({params: { letterId }}: Props) => {
-    const {userId} = await auth()
-    if (!userId){
-        return redirect('/dashboard');
-    }
-
-    const user = clerk.users.getUser(userId);
-
     const letters = await db.select().from($letters).where(
         and(
             eq($letters.id, parseInt(letterId)),
@@ -55,9 +46,6 @@ const LetterPage = async ({params: { letterId }}: Props) => {
                     </Button>
                 </Link>
                 <div className="w-3"></div>
-                <span className='font-semibold text-white'>
-                    {(await user).firstName} {(await user).lastName}
-                </span>
                 <span className='inline-block mx-1 text-white'>/</span>
                 <span className='text-stone-400 font-semibold'>
                     {letter.name}

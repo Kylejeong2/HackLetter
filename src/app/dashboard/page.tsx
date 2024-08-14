@@ -1,13 +1,12 @@
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import { UserButton } from '@clerk/nextjs';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
 import { $letters } from '@/lib/db/schema';
 // import { eq } from 'drizzle-orm';
 import { db } from '@/lib/db';
-import CreateButton from '@/components/tools/CreateButton';
+// import CreateButton from '@/components/tools/CreateButton';
 
 type Props = {}
 
@@ -28,7 +27,6 @@ const DashboardPage = async (props: Props) => {
                             <div className='w-4'></div>
                             <h1 className='text-3xl font-bold text-white'>HackLetter Archives</h1>
                             <div className='w-4'></div>
-                            <UserButton />
                         </div>
                     </div>
 
@@ -40,7 +38,6 @@ const DashboardPage = async (props: Props) => {
 
                     <div className='grid sm:grid-cols-3 md:grid-cols-5 grid-cols-1 gap-3'>
                         {/* <CreateButton /> */}
-
                         {letters.map(letter => {
                             return (
                                 <a href={`/letters/${letter.id}`} key={letter.id}>
